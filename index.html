@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>         -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <title>kamio-2018-order</title>
+</head>
+
+<body>
+  <script>
+    $(function () {
+      var sn = [];
+      var title = [];
+      var tel = [];
+      var time = [];
+      var order = [];
+      var memo = [];
+      $.getJSON('https://spreadsheets.google.com/feeds/list/1wW37LBD5D-EgbQv2paMyeXcoxMSbcwIQxFn-CHsiu6A/ogsci8w/public/values?alt=json', function (data) {
+        for (var i = 0; i < data.feed.entry.length; i++) {
+          sn[i] = data.feed.entry[i].gsx$sn.$t;
+          name[i] = data.feed.entry[i].gsx$name.$t;
+          tel[i] = data.feed.entry[i].gsx$tel.$t;
+          time[i] = data.feed.entry[i].gsx$time.$t;
+          order[i] = data.feed.entry[i].gsx$order.$t;
+          memo[i] = data.feed.entry[i].gsx$memo.$t;
+          $('#producttable').append("<tr><td>" + sn[i] + "</td><td>" + name[i] + "</td><td>" + tel[i] + "</td><td>" + time[i] + "</td><td>" + order[i] + memo[i] + "</td></tr>");
+        }
+      });
+    });
+  </script>
+  <div class="container my-5">
+    <h1 class="text-center">點餐表</h1>
+    <table class="table table-dark table-striped table-bordered table-hover table-sm">
+      <thead>
+        <tr>
+          <th scope="col">時間戳記</th>
+          <th scope="col">姓名</th>
+          <th scope="col">電話</th>
+          <th scope="col">領取時間</th>
+          <th scope="col">點餐</th>
+          <th scope="col">備註</th>
+
+        </tr>
+      </thead>
+      <tbody id="producttable">
+      </tbody>
+    </table>
+    <hr>
+    <a href="https://docs.google.com/spreadsheets/d/1wW37LBD5D-EgbQv2paMyeXcoxMSbcwIQxFn-CHsiu6A/edit?usp=sharing" target="_blank"
+      class="btn btn-primary">管理員編輯表單</a>
+
+    <hr>
+    <p>
+      kamio測試
+    </p>
+    <p>
+      其實是很好用的功能，可以運用到很多地方
+    </p>
+
+
+
+  </div>
+
+</body>
+
+</html>
